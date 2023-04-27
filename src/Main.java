@@ -13,7 +13,7 @@ public class Main {
         String currentFile = null;
         ArrayList<String> userList = new ArrayList<String>();
         do{
-            switch(getUserOption(currentFile)){
+            switch(getUserOption(currentFile)) { // Code for each menu options; "dirty" is for prompt to save before/after action
                 case "A":
                     addOption(userList);
                     dirty = true;
@@ -43,7 +43,7 @@ public class Main {
             }
         }while(!quit);
     }
-    public static String getUserOption(String currentFile) {
+    public static String getUserOption(String currentFile) { // Code for main menu
         if(currentFile != null){
             System.out.println("Current file: " + currentFile);
         }
@@ -65,13 +65,13 @@ public class Main {
         return option;
     }
 
-    public static void addOption(ArrayList<String> list){
+    public static void addOption(ArrayList<String> list){ // Code to add single item
         Scanner scan = new Scanner(System.in);
         String prompt = "Enter the item you want to add";
         list.add(SafeInput.getNonZeroLenString(scan, prompt));
     }
 
-    public static void  deleteOption(ArrayList<String> list, String currentFile){
+    public static void  deleteOption(ArrayList<String> list, String currentFile){ // Code to delete single item
         printOption(list, currentFile);
 
         if(list.size() > 0) {
@@ -81,7 +81,7 @@ public class Main {
         }
     }
 
-    public static void printOption(ArrayList<String> list, String currentFile){
+    public static void printOption(ArrayList<String> list, String currentFile){ // Code to print/view the list
 
         if(currentFile != null){
             System.out.println("Current file: " + currentFile);
@@ -96,11 +96,11 @@ public class Main {
         System.out.println();
     }
 
-    public static void clearOption(ArrayList<String> list){
+    public static void clearOption(ArrayList<String> list){ // Code to clear list
         list.clear();
     }
 
-    public static String openOption(boolean dirty, ArrayList<String> list, String currentFile){
+    public static String openOption(boolean dirty, ArrayList<String> list, String currentFile){ // Code to open lists
         if(dirty){
             checkForSave(dirty, list, currentFile);
         }
@@ -130,7 +130,7 @@ public class Main {
         return currentFile;
     }
 
-    public static String saveOption(ArrayList<String> list, String currentFile){
+    public static String saveOption(ArrayList<String> list, String currentFile){ // Code to save
         String fileName = currentFile;
         JFileChooser jfc = new JFileChooser();
         if(fileName == null) {
@@ -153,13 +153,13 @@ public class Main {
         return currentFile;
     }
 
-    public static boolean quitOption(boolean dirty){
+    public static boolean quitOption(boolean dirty){ // Code for quit
         Scanner scan = new Scanner(System.in);
         String prompt = "Are you sure you want to quit? (Y/N)";
         return SafeInput.getYNConfirm(scan, prompt);
     }
 
-    public static boolean checkForSave(boolean dirty, ArrayList<String> list, String currentFile){
+    public static boolean checkForSave(boolean dirty, ArrayList<String> list, String currentFile){ // Code to check if the user wishes to save before/after a given action
         if(dirty) {
             Scanner scan = new Scanner(System.in);
             String prompt = "Do you want to save your list? Otherwise it will be abandoned. (Y/N)";
